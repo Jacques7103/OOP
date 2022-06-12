@@ -31,18 +31,25 @@ public class Frame extends JFrame{
         fright.setLayout(null);
 
         Food food = new Food();
-        JPanel pright = food.panelFood();
-        fright.add(pright);
+        JPanel pfood = food.panelFood();
+        fright.add(pfood);
+        fright.setVisible(true);
         
         dright = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
         dright.setPreferredSize(new Dimension(600, 600));
         dright.setBackground(new Color(228, 233, 236));
         dright.setBounds(200, 0, 600, 600);
 
+        dright.setVisible(false);
+
         cright = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
         cright.setPreferredSize(new Dimension(600, 600));
         cright.setBackground(new Color(228, 233, 236));
         cright.setBounds(200, 0, 600, 600);
+
+        JPanel pcart = food.panelCart();
+        cright.add(pcart);
+        cright.setVisible(false);
 
         //https://www.clipartmax.com/middle/m2i8G6Z5Z5b1b1d3_plate-with-fork-and-knife-cross-vector-food-plate-icon-vector/
         ImageIcon img2 = new ImageIcon("C:/Users/ferdi/OneDrive/Desktop/Binus/2nd Semester/Object Oriented Programming/Forum Exercise/Project/food.png");
