@@ -10,7 +10,7 @@ public class Button {
         add.setFocusPainted(false);
         add.setPreferredSize(new Dimension(25, 25));
         add.setMargin(new Insets(0, 0, 0, 0));
-        add.setBounds(25, 70, 25, 25);
+        add.setBounds(75, 70, 25, 25);
         
         return add;
     }
@@ -21,7 +21,7 @@ public class Button {
         remove.setFocusPainted(false);
         remove.setPreferredSize(new Dimension(25, 25));
         remove.setMargin(new Insets(0, 0, 0, 0));
-        remove.setBounds(75, 70, 25, 25);
+        remove.setBounds(25, 70, 25, 25);
 
         return remove;
     }

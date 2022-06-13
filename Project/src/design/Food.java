@@ -6,16 +6,17 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.Timer;
+import java.text.*;
 
 public class Food {
     private int wcount = 0;
     private int wecount = 0;
     private int scount = 0;
     private int bcount = 0;
-    private double wingprice = 2.0;
-    private double wedgeprice = 2.0;
-    private double steakprice = 2.0;
-    private double burgerprice = 2.0;
+    private double wingprice = 8.19;
+    private double wedgeprice = 6.35;
+    private double steakprice = 18.49;
+    private double burgerprice = 13.29;
     private int margin = 35;
     private int margin2 = 0;
     Button button = new Button();
@@ -24,6 +25,7 @@ public class Food {
     private static ArrayList<JLabel> rilist = new ArrayList<JLabel>();
     private static ArrayList<JLabel> rnlist = new ArrayList<JLabel>();
     private int qcount = 0;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     public JPanel panelFood(){
         JPanel pfood = new JPanel();
         pfood.setPreferredSize(new Dimension(600, 600));
@@ -49,7 +51,7 @@ public class Food {
         JLabel wings = new JLabel();
         wings.setIcon(wing);
         //https://www.britannica.com/topic/buffalo-wings
-        wings.setText("<html><span style='font-size:15px'>Chicken Wings</span><br><br><span style='font-size:10px'>Deep fried chicken wings coated with a vinegar and cayenne pepper hot sauce mixed with butter.</span><html>");
+        wings.setText("<html><span style='font-size:15px'>Chicken Wings</span><br><span style='font-size:10px'>$ 8.19</span><br><span style='font-size:10px'>Deep fried chicken wings coated with a vinegar and cayenne pepper hot sauce mixed with butter.</span><html>");
         wings.setHorizontalAlignment(JLabel.CENTER);
         wings.setVerticalAlignment(JLabel.CENTER);
         wings.setBounds(30, -20, 450, 200);
@@ -66,7 +68,7 @@ public class Food {
         JLabel wedges = new JLabel();
         wedges.setIcon(wedge);
         //https://www.allrecipes.com/recipe/199575/oven-fresh-seasoned-potato-wedges/
-        wedges.setText("<html><span style='font-size:15px'>Potato Wedges</span><br><br><span style='font-size:10px'>Unpeeled potato that baked in the oven and seasoned with parmesan, garlic powder, and onion powder. </span><html");
+        wedges.setText("<html><span style='font-size:15px'>Potato Wedges</span><br><span style='font-size:10px'>$ 6.35</span><br><span style='font-size:10px'>Unpeeled potato that baked in the oven and seasoned with parmesan, garlic powder, and onion powder. </span><html");
         wedges.setHorizontalAlignment(JLabel.CENTER);
         wedges.setVerticalAlignment(JLabel.CENTER);
         wedges.setBounds(30, (-20 + 100 + margin), 450, 200);
@@ -83,7 +85,7 @@ public class Food {
         JLabel steaks = new JLabel();
         steaks.setIcon(steak);
         //https://guide.michelin.com/en/article/dining-in/restaurant-secrets-how-to-cook-the-perfect-steak
-        steaks.setText("<html><span style='font-size:15px'>Beef Steak</span><br><br><span style='font-size:10px'>Rib-eye beef steak that has the right amount of fat to meat ratio and comes with every rich marbling. </span><html");
+        steaks.setText("<html><span style='font-size:15px'>Beef Steak </span><br><span style='font-size:10px'>$ 18.49</span><br><span style='font-size:10px'>Rib-eye beef steak that has the right amount of fat to meat ratio and comes with every rich marbling. </span><html");
         steaks.setHorizontalAlignment(JLabel.CENTER);
         steaks.setVerticalAlignment(JLabel.CENTER);
         steaks.setBounds(30, (-20 + 200 + (margin * 2)), 450, 200);
@@ -100,7 +102,7 @@ public class Food {
         JLabel burgers = new JLabel();
         burgers.setIcon(burger);
         //
-        burgers.setText("<html><span style='font-size:15px'>Beef Cheese Burger</span><br><br><span style='font-size:10px'>Sandwich consisting ground meat made into a patty, topped with cheese, and placed between two halves of a bun.  </span><html");
+        burgers.setText("<html><span style='font-size:15px'>Beef Cheese Burger </span><br><span style='font-size:10px'>$ 13.29</span><br><span style='font-size:10px'>Sandwich consisting ground meat made into a patty, topped with cheese, and placed between two halves of a bun.  </span><html");
         burgers.setHorizontalAlignment(JLabel.CENTER);
         burgers.setVerticalAlignment(JLabel.CENTER);
         burgers.setBounds(30, (-20 + 300 + (margin * 3)), 450, 200);
@@ -131,8 +133,15 @@ public class Food {
 
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                double wingprices = wcount * wingprice;
-                wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(wingprices) + "</p></html>");
+                if (wcount == 0){
+                    "".isEmpty();
+                } else if (wcount == 1){
+                    double wingprices = wcount * wingprice;
+                    wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:1'>$ " + String.valueOf(df.format(wingprices)) + "</p></html>");
+                } else if (wcount > 1){
+                    double wingprices = wcount * wingprice;
+                    wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:-2'>$ " + String.valueOf(df.format(wingprices)) + "</p></html>");
+                }
             }
         }).start();
 
@@ -149,7 +158,7 @@ public class Food {
                 wcount++;
                 double wingprices = wcount * wingprice;
                 num.setText(String.valueOf(wcount));
-                wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(wingprices) + "</p></html>");
+                wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(wingprices)) + "</p></html>");
             }
         });
 
@@ -161,7 +170,7 @@ public class Food {
                     wcount--;
                     double wingprices = wcount * wingprice;
                     num.setText(String.valueOf(wcount));
-                    wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(wingprices) + "</p></html>");
+                    wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(wingprices)) + "</p></html>");
                 }
             }
         });
@@ -194,8 +203,15 @@ public class Food {
 
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                double wedgeprices = wecount * wedgeprice;
-                wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(wedgeprices) + "</p></html>");
+                if (wecount == 0){
+                    "".isEmpty();
+                } else if (wecount == 1){
+                    double wedgeprices = wecount * wedgeprice;
+                    wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:1'>$ " + String.valueOf(df.format(wedgeprices)) + "</p></html>");
+                } else if (wecount > 1){
+                    double wedgeprices = wecount * wedgeprice;
+                    wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:-2'>$ " + String.valueOf(df.format(wedgeprices)) + "</p></html>");
+                }
             }
         }).start();
 
@@ -212,7 +228,7 @@ public class Food {
                 wecount++;
                 double wedgeprices = wecount * wedgeprice;
                 num2.setText(String.valueOf(wecount));
-                wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(wedgeprices) + "</p></html>");
+                wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:1'>$ " + String.valueOf(df.format(wedgeprices)) + "</p></html>");
             }
         });
 
@@ -224,7 +240,7 @@ public class Food {
                     wecount--;
                     double wedgeprices = wecount * wedgeprice;
                     num2.setText(String.valueOf(wecount));
-                    wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(wedgeprices) + "</p></html>");
+                    wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:1'>$ " + String.valueOf(df.format(wedgeprices)) + "</p></html>");
                 }
             }
         });
@@ -257,8 +273,12 @@ public class Food {
 
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                double steakprices = scount * steakprice;
-                steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(steakprices) + "</p></html>");
+                if (scount == 0){
+                    "".isEmpty();
+                } else if (scount >= 1){
+                    double steakprices = scount * steakprice;
+                    steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:-2'>$ " + String.valueOf(df.format(steakprices)) + "</p></html>");
+                }
             }
         }).start();
 
@@ -275,7 +295,7 @@ public class Food {
                 scount++;
                 double steakprices = scount * steakprice;
                 num3.setText(String.valueOf(scount));
-                steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(steakprices) + "</p></html>");
+                steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(steakprices)) + "</p></html>");
             }
         });
 
@@ -287,7 +307,7 @@ public class Food {
                     scount--;
                     double steakprices = scount * steakprice;
                     num3.setText(String.valueOf(scount));
-                    steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(steakprices) + "</p></html>");
+                    steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(steakprices)) + "</p></html>");
                 }
             }
         });
@@ -320,8 +340,12 @@ public class Food {
 
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                double burgerprices = bcount * burgerprice;
-                burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(burgerprices) + "</p></html>");
+                if (bcount == 0){
+                    "".isEmpty();
+                } else if (bcount >= 1){
+                    double burgerprices = bcount * burgerprice;
+                    burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:-2'>$ " + String.valueOf(df.format(burgerprices)) + "</p></html>");
+                }
             }
         }).start();
 
@@ -338,7 +362,7 @@ public class Food {
                 bcount++;
                 double burgerprices = bcount * burgerprice;
                 num4.setText(String.valueOf(bcount));
-                burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(burgerprices) + "</p></html>");
+                burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(burgerprices)) + "</p></html>");
             }
         });
 
@@ -350,7 +374,7 @@ public class Food {
                     bcount--;
                     double burgerprices = bcount * burgerprice;
                     num4.setText(String.valueOf(bcount));
-                    burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(burgerprices) + "</p></html>");
+                    burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(burgerprices)) + "</p></html>");
                 }
             }
         });
