@@ -9,7 +9,7 @@ public class Frame extends JFrame{
     public void createFrame(){
         JFrame win = new JFrame("Restaurant");
         win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        win.setSize(800, 600);
+        win.setSize(810, 600);
         win.setResizable(false);
 
         JPanel left = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
@@ -21,8 +21,8 @@ public class Frame extends JFrame{
         logo.setPreferredSize(new Dimension(200, 149));
         logo.setBorder(new LineBorder(new Color(102, 102, 102),1));
 
-        JPanel fright, dright, cright;
-        JButton foods, drinks, carts;
+        JPanel fright, cright;
+        JButton foods, carts;
 
         fright = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
         fright.setPreferredSize(new Dimension(600, 600));
@@ -34,20 +34,13 @@ public class Frame extends JFrame{
         JPanel pfood = food.panelFood();
         fright.add(pfood);
         fright.setVisible(true);
-        
-        dright = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
-        dright.setPreferredSize(new Dimension(600, 600));
-        dright.setBackground(new Color(228, 233, 236));
-        dright.setBounds(200, 0, 600, 600);
-
-        dright.setVisible(false);
 
         cright = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
         cright.setPreferredSize(new Dimension(600, 600));
         cright.setBackground(new Color(228, 233, 236));
         cright.setBounds(200, 0, 600, 600);
 
-        JPanel pcart = food.panelCart();
+        JScrollPane pcart = food.panelCart();
         cright.add(pcart);
         cright.setVisible(false);
 
@@ -64,32 +57,13 @@ public class Frame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 fright.setVisible(true);
-                dright.setVisible(false);
-                cright.setVisible(false);
-            }
-        });
-
-        //https://www.vexels.com/png-svg/preview/156834/cocktail-drink-flat-icon
-        ImageIcon img3 = new ImageIcon("C:/Users/ferdi/OneDrive/Desktop/Binus/2nd Semester/Object Oriented Programming/Forum Exercise/Project/drink.png");
-        drinks = new JButton("Drinks", img3);
-        drinks.setFont(new Font("Arial", Font.PLAIN, 40));
-        drinks.setPreferredSize(new Dimension(200, 138));
-        drinks.setBackground(new Color(153, 153, 153));
-        drinks.setFocusPainted(false);
-        drinks.setBorder(new LineBorder(new Color(102, 102, 102),1));
-        drinks.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-                fright.setVisible(false);
-                dright.setVisible(true);
                 cright.setVisible(false);
             }
         });
 
         //https://flyclipart.com/add-to-cart-icons-download-free-png-and-vector-icons-shopping-cart-icon-png-301425
-        ImageIcon img4 = new ImageIcon("C:/Users/ferdi/OneDrive/Desktop/Binus/2nd Semester/Object Oriented Programming/Forum Exercise/Project/cart.png");
-        carts = new JButton("Cart", img4);
+        ImageIcon img3 = new ImageIcon("C:/Users/ferdi/OneDrive/Desktop/Binus/2nd Semester/Object Oriented Programming/Forum Exercise/Project/cart.png");
+        carts = new JButton("Cart", img3);
         carts.setFont(new Font("Arial", Font.PLAIN, 40));
         carts.setPreferredSize(new Dimension(200, 138));
         carts.setBackground(new Color(153, 153, 153));
@@ -100,19 +74,16 @@ public class Frame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 fright.setVisible(false);
-                dright.setVisible(false);
                 cright.setVisible(true);
             }
         });
-
+        
         win.add(left, BorderLayout.LINE_START);
         left.add(logo, BorderLayout.PAGE_START);
         left.add(foods, BorderLayout.AFTER_LAST_LINE);
-        left.add(drinks, BorderLayout.AFTER_LAST_LINE);
         left.add(carts, BorderLayout.AFTER_LAST_LINE);
 
         win.add(fright);
-        win.add(dright);
         win.add(cright);
         win.setVisible(true);
     }

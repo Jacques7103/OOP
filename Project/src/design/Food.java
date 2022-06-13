@@ -17,6 +17,7 @@ public class Food {
     private double wedgeprice = 6.35;
     private double steakprice = 18.49;
     private double burgerprice = 13.29;
+    private static double wingprices, wedgeprices, steakprices, burgerprices, total;
     private int margin = 35;
     private int margin2 = 0;
     Button button = new Button();
@@ -26,6 +27,8 @@ public class Food {
     private static ArrayList<JLabel> rnlist = new ArrayList<JLabel>();
     private int qcount = 0;
     private static final DecimalFormat df = new DecimalFormat("0.00");
+    // private static boolean checkWindow = true;
+    static Timer timer;
     public JPanel panelFood(){
         JPanel pfood = new JPanel();
         pfood.setPreferredSize(new Dimension(600, 600));
@@ -134,12 +137,12 @@ public class Food {
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if (wcount == 0){
-                    "".isEmpty();
+                    wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ 0.0</p></html>");
                 } else if (wcount == 1){
-                    double wingprices = wcount * wingprice;
+                    wingprices = wcount * wingprice;
                     wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:1'>$ " + String.valueOf(df.format(wingprices)) + "</p></html>");
                 } else if (wcount > 1){
-                    double wingprices = wcount * wingprice;
+                    wingprices = wcount * wingprice;
                     wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:-2'>$ " + String.valueOf(df.format(wingprices)) + "</p></html>");
                 }
             }
@@ -156,7 +159,7 @@ public class Food {
             @Override
             public void actionPerformed(ActionEvent e){
                 wcount++;
-                double wingprices = wcount * wingprice;
+                wingprices = wcount * wingprice;
                 num.setText(String.valueOf(wcount));
                 wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(wingprices)) + "</p></html>");
             }
@@ -168,7 +171,7 @@ public class Food {
             public void actionPerformed(ActionEvent e){
                 if (wcount > 0){
                     wcount--;
-                    double wingprices = wcount * wingprice;
+                    wingprices = wcount * wingprice;
                     num.setText(String.valueOf(wcount));
                     wingsprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(wingprices)) + "</p></html>");
                 }
@@ -204,12 +207,12 @@ public class Food {
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if (wecount == 0){
-                    "".isEmpty();
+                    wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ 0.0</p></html>");
                 } else if (wecount == 1){
-                    double wedgeprices = wecount * wedgeprice;
+                    wedgeprices = wecount * wedgeprice;
                     wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:1'>$ " + String.valueOf(df.format(wedgeprices)) + "</p></html>");
                 } else if (wecount > 1){
-                    double wedgeprices = wecount * wedgeprice;
+                    wedgeprices = wecount * wedgeprice;
                     wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:-2'>$ " + String.valueOf(df.format(wedgeprices)) + "</p></html>");
                 }
             }
@@ -226,7 +229,7 @@ public class Food {
             @Override
             public void actionPerformed(ActionEvent e){
                 wecount++;
-                double wedgeprices = wecount * wedgeprice;
+                wedgeprices = wecount * wedgeprice;
                 num2.setText(String.valueOf(wecount));
                 wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:1'>$ " + String.valueOf(df.format(wedgeprices)) + "</p></html>");
             }
@@ -238,7 +241,7 @@ public class Food {
             public void actionPerformed(ActionEvent e){
                 if (wecount > 0){
                     wecount--;
-                    double wedgeprices = wecount * wedgeprice;
+                    wedgeprices = wecount * wedgeprice;
                     num2.setText(String.valueOf(wecount));
                     wedgesprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:1'>$ " + String.valueOf(df.format(wedgeprices)) + "</p></html>");
                 }
@@ -274,9 +277,9 @@ public class Food {
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if (scount == 0){
-                    "".isEmpty();
+                    steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ 0.0</p></html>");
                 } else if (scount >= 1){
-                    double steakprices = scount * steakprice;
+                    steakprices = scount * steakprice;
                     steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:-2'>$ " + String.valueOf(df.format(steakprices)) + "</p></html>");
                 }
             }
@@ -293,7 +296,7 @@ public class Food {
             @Override
             public void actionPerformed(ActionEvent e){
                 scount++;
-                double steakprices = scount * steakprice;
+                steakprices = scount * steakprice;
                 num3.setText(String.valueOf(scount));
                 steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(steakprices)) + "</p></html>");
             }
@@ -305,7 +308,7 @@ public class Food {
             public void actionPerformed(ActionEvent e){
                 if (scount > 0){
                     scount--;
-                    double steakprices = scount * steakprice;
+                    steakprices = scount * steakprice;
                     num3.setText(String.valueOf(scount));
                     steaksprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(steakprices)) + "</p></html>");
                 }
@@ -341,9 +344,9 @@ public class Food {
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if (bcount == 0){
-                    "".isEmpty();
+                    burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ 0.0</p></html>");
                 } else if (bcount >= 1){
-                    double burgerprices = bcount * burgerprice;
+                    burgerprices = bcount * burgerprice;
                     burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:-2'>$ " + String.valueOf(df.format(burgerprices)) + "</p></html>");
                 }
             }
@@ -360,7 +363,7 @@ public class Food {
             @Override
             public void actionPerformed(ActionEvent e){
                 bcount++;
-                double burgerprices = bcount * burgerprice;
+                burgerprices = bcount * burgerprice;
                 num4.setText(String.valueOf(bcount));
                 burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(burgerprices)) + "</p></html>");
             }
@@ -372,7 +375,7 @@ public class Food {
             public void actionPerformed(ActionEvent e){
                 if (bcount > 0){
                     bcount--;
-                    double burgerprices = bcount * burgerprice;
+                    burgerprices = bcount * burgerprice;
                     num4.setText(String.valueOf(bcount));
                     burgersprice.setText("<html><p style='margin-left:2'>Price:</p><p style='margin-top:10;margin-left:5'>$ " + String.valueOf(df.format(burgerprices)) + "</p></html>");
                 }
@@ -387,12 +390,29 @@ public class Food {
         return burgersnum;
     }
 
-    public JPanel panelCart(){
+    public JScrollPane panelCart(){
         JPanel pcart = new JPanel();
-        pcart.setPreferredSize(new Dimension(600, 600));
+        pcart.setPreferredSize(new Dimension(600, 700));
         pcart.setBackground(new Color(228, 233, 236));
-        pcart.setBounds(0, 0, 600, 600);
         pcart.setLayout(null);
+        JScrollPane scart = new JScrollPane(pcart, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scart.setPreferredSize(new Dimension(600, 600));
+        
+        JPanel check = new JPanel();
+        check.setPreferredSize(new Dimension(600, 100));
+        check.setBounds(0, 600, 600, 100);
+        check.setBackground(new Color(228, 233, 236));
+        check.setLayout(null);
+        pcart.add(check, BorderLayout.PAGE_END);
+
+        JLabel tprice = new JLabel();
+        tprice.setText("<html><span style='font-size:14px'>Total : " + String.valueOf(df.format(total)) + "</span><html>");
+        tprice.setBounds(30, 0, 300, 50);
+        JButton checkout = new JButton("Checkout");
+        checkout.setFont(new Font("Arial", Font.PLAIN, 30));
+        checkout.setFocusPainted(false);
+        checkout.setBackground(new Color(153, 153, 153));
+        checkout.setBounds(400, 0, 170, 50);
 
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -493,13 +513,43 @@ public class Food {
             }
         }).start();
 
+        Food.timer = new Timer(3000, new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                    if (ilist.size() != 0){
+                        System.out.println("i :" + ilist.size());
+                        checkout.addActionListener(new ActionListener(){
+
+                            @Override
+                            public void actionPerformed(ActionEvent e){
+                                if (checkout.isEnabled()){
+                                    Window newWindow = new Window();
+                                    newWindow.createWindow();
+                                    checkout.setEnabled(false);
+                                }
+                            }
+                        });
+                    } else {
+                        for (ActionListener current : checkout.getActionListeners()){
+                            checkout.removeActionListener(current);
+                        }
+                        checkout.setEnabled(true);
+                } 
+            }
+        });
+        timer.start();
+
         new Timer(100, new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                pcart.repaint();
+                total = wingprices + wedgeprices + steakprices + burgerprices;
+                tprice.setText("<html><span style='font-size:14px'>Total : " + String.valueOf(df.format(total)) + "</span><html>");
+                scart.repaint();
             }
         }).start();
 
-        return pcart;
+        check.add(tprice, BorderLayout.PAGE_START);
+        check.add(checkout);
+
+        return scart;
     }
 
     public boolean checkItem(Map<Integer, JLabel> list, JLabel label){
@@ -510,4 +560,8 @@ public class Food {
         }
         return false;
     }
+
+    // public void setCheck(boolean input){
+    //     Food.checkWindow = input;
+    // }
 }
