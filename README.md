@@ -5,7 +5,7 @@
 **NIM : 2501982600**<br>
 
 ## Object Oriented Programming Final Project
-Link for the repository : https://github.com/Jacques7103/OOP/tree/main/Project
+Link for the repository : https://github.com/Jacques7103/OOP/tree/main/Project<br>
 Link for the video explanation : https://drive.google.com/file/d/1i0AIOsWw6uCbuc_NgkkYgmgbTS-aQNB3/view?usp=sharing
 
 ### Project Directory :
