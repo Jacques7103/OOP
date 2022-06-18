@@ -1,8 +1,8 @@
 # OOP
 
-Name : Ferdinand Jacques
-Class : L2BC
-NIM : 2501982600
+Name : Ferdinand Jacques<br>
+Class : L2BC<br>
+NIM : 2501982600<br>
 
 ## Object Oriented Programming Final Project
 Link for the repository : https://github.com/Jacques7103/OOP/tree/main/Project
